@@ -13,7 +13,7 @@ def get_list():
     while True:
         if msg:
             try:
-                msg = msg.split(',')
+                msg = [int(n) for n in msg.split(',')]
                 return msg
             except:
                 print('Error')
