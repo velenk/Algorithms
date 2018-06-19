@@ -4,5 +4,30 @@ def main():
     list0 = get_list()
     newlist = []
     for i in range(len(list0)):
-        smallest = smallest(list0)
-        newlist.append()
+        small = smallest(list0)
+        newlist.append(list0.pop(small))
+    return newlist
+
+def get_list():
+    msg = input("Input the list(use ',' to split):")
+    while True:
+        if msg:
+            try:
+                msg = msg.split(',')
+                return msg
+            except:
+                print('Error')
+        else:
+            exit()
+
+def smallest(a):
+    smallest = a[0]
+    index = 0
+    for i in range(1, len(a)):
+        if a[i] < smallest:
+            smallest = a[i]
+            index = i
+    return index
+
+new = main()
+print(new)
