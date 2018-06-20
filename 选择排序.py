@@ -9,8 +9,8 @@ def main():
     return newlist
 
 def get_list():
-    msg = input("Input the list(use ',' to split):")
     while True:
+        msg = input("Input the list(use ',' to split):")
         if msg:
             try:
                 msg = [int(n) for n in msg.split(',')]

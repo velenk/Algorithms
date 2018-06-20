@@ -9,8 +9,8 @@ def main():
         print(num)
 
 def get_msg():
-    s = input('Input a letter (Captial):')
     while True:
+        s = input('Input a letter (Captial):')
         if s:
             return s
         else:
