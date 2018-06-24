@@ -20,13 +20,15 @@ def quicksort(list0):
     if len(list0) < 2:
         return list0
     else:
-        list1 = list2 = []
+        list1 = []
+        list2 = []
+        pivot = list0[0]
         for i in list0[1:]:
-            if i < list0[0]:
+            if i < pivot:
                 list1.append(i)
             else:
                 list2.append(i)
-        list0 = quicksort(list1) + list0[0] + quicksort(list2)
+        list0 = quicksort(list1) + [pivot] + quicksort(list2)
         return list0
 
 main()
