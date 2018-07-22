@@ -29,3 +29,34 @@ int FindElement(int x, List *ptrL) {
   return i;
 }
 
+void Insert(int x, List *prtL, int i) {
+  int j;
+  if (ptrL->last >= k_MaxSize) {
+    std::cout << "Error: No place to insert" << std::endl;
+    return;
+  }
+  if (i < 0 || i > ptrL->last + 1) {
+    std::cout << "Error: Invalid subscript" << std::endl;
+    return;
+  }
+  for (j = ptrL->last + 1;j >= i;--j) {
+    ptrL->data_value[j] = ptrL->data_value[j-1];
+  }
+  ptrL->data_value[i] = x;
+  ptrL->last++;
+  return;
+}
+
+void Delete(List *prtL, int i) {
+  int j;
+  if (i < 0 || i > ptrL->last) {
+    std::cout << "Error: Invalid subscript" << std::endl;
+    return;
+  }
+  for (j = i;j < ptrL->last;++j) {
+    ptrL->data_value[j] = ptrL->data_value[j+1];
+  }
+  ptrL->last--;
+  return;
+}
+
