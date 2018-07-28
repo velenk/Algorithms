@@ -18,7 +18,6 @@ int Lenth(List *ptrL) {
 }
 
 int main() {
-  Lenth(ptrL);
   //Lenth(ptrL);
   return 0;
 }
