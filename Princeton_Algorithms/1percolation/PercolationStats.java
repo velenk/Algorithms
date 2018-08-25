@@ -2,6 +2,7 @@ import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.StdStats;
+import edu.princeton.cs.algs4.Stopwatch;
 
 public class PercolationStats {
    private int sidelenth;
@@ -30,6 +31,7 @@ public class PercolationStats {
 					 count++;
 				 }
 			 }
+			expriments[i] = (double) count / (n * n);
 		 }
 		 mean = StdStats.mean(expriments);
          stddev = StdStats.stddev(expriments);
@@ -51,7 +53,10 @@ public class PercolationStats {
 	   StdOut.printf("%-25s\n", "Please input 2 integers");
 		int n = StdIn.readInt();
 		int trials = StdIn.readInt();
+		Stopwatch wt = new Stopwatch();
 	   PercolationStats prec = new PercolationStats(n, trials);
+	   double elapsed = wt.elapsedTime();
+	   StdOut.printf("%-25s= %.15f\n", "elapsed CPU time", elapsed);
 	   StdOut.printf("%-25s= %.7f\n", "mean", prec.mean());
 		StdOut.printf("%-25s= %.17f\n", "stddev", prec.stddev());
 		StdOut.printf("%-25s= [%.15f, %.15f]\n", "%95 confidence interval", prec.confidenceLo(), prec.confidenceHi());

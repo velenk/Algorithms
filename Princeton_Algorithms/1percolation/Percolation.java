@@ -10,10 +10,10 @@ public class Percolation {
    public Percolation(int n) {               // create n-by-n grid, with all sites blocked
 	if(n <= 0) throw new IllegalArgumentException("Input should be positif!\n");
 	 this.N = n;
+	 this.site = new boolean[N*N+2];
 	 for(int i=1; i<n*n+1; i++) {
 		 site[i] = false;
 	 }
-	 this.site = new boolean[N*N+2];
 	 this.site[0] = this.site[N*N+1] = true;
 	 this.uf = new  WeightedQuickUnionUF(N*N+2);
 	 this.uf_top = new WeightedQuickUnionUF(n*n+1);
@@ -29,10 +29,8 @@ public class Percolation {
 		}
 	}
    public    void open(int row, int col) {   // open site (row, col) if it is not open already
-	 int pos = (row - 1) * N + col;
-	 if (row < 1 || row > N || col < 1 || col > N) {
-	 	throw new IndexOutOfBoundsException("index out of bounds");
-	 }
+	   checkBounds(row, col);
+	   int pos = (row - 1) * N + col;
 	 if (site[pos]) {
 		 return;
 	 }
