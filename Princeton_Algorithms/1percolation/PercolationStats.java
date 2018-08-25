@@ -1,13 +1,12 @@
+import edu.princeton.cs.algs4.StdIn;
+import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.StdStats;
-import java.util.Scanner;
 
 public class PercolationStats {
    private int sidelenth;
    private double mean;
    private double stddev;
-   private double con_lo;
-   private double con_hi;
    private double[] expriments;
    
    public PercolationStats(int n, int trials) {    // perform trials independent experiments on an n-by-n grid
@@ -18,26 +17,22 @@ public class PercolationStats {
 	 if (sidelenth == 1) {
 		 mean = 1;
 		 stddev = Double.NaN;
-		 con_io = Double.NaN;
-		 con_hi = Double.NaN;
 	 } else {
 		 expriments = new double[trials];
 		 for (int i = 0; i < trials; i++) {
-			 Percolation check_prec = new Precolation(n);
+			 Percolation check_prec = new Percolation(n);
 			 int count = 0;
 			 while (!check_prec.percolates()) {
 				 int row = StdRandom.uniform(n) + 1;
 				 int col =  StdRandom.uniform(n) + 1;
-				 if check_prec.isOpen(row, col) {
+				 if (check_prec.isOpen(row, col)) {
 					 check_prec.open(row, col);
 					 count++;
 				 }
 			 }
 		 }
-		 mean = StdStats.mean(experiments);
-         stddev = StdStats.stddev(experiments);
-         con_lo = mean - (1.96 * stddev) / Math.sqrt(trials);
-         con_hi = mean + (1.96 * stddev) / Math.sqrt(trials);
+		 mean = StdStats.mean(expriments);
+         stddev = StdStats.stddev(expriments);
 	 }
    }
    public double mean() {                          // sample mean of percolation threshold
@@ -47,18 +42,18 @@ public class PercolationStats {
 	   return stddev;
    }
    public double confidenceLo() {                  // low  endpoint of 95% confidence interval
-	   return con_lo;
+	   return mean() - 1.96 * stddev() / Math.sqrt(expriments.length);
    }
    public double confidenceHi() {                  // high endpoint of 95% confidence interval
-	   return con_hi;
+	   return mean() + 1.96 * stddev() / Math.sqrt(expriments.length);
    }
    public static void main(String[] args) {       // test client (described below)
-	   int n = Integer.parseInt(args[0]);
-	   int trails = Integer.parseInt(args[1]);
-	   PercolationStats prec = new Percolation(n, trails);
-	   System.out.println("mean:  " + per.mean());
-       System.out.println("stddev:  " + per.stddev());
-       System.out.println("confidence Low:  " + per.confidenceLo());
-       System.out.println("confidence High:  " + per.confidenceHi());
+	   StdOut.printf("%-25s\n", "Please input 2 integers");
+		int n = StdIn.readInt();
+		int trials = StdIn.readInt();
+	   PercolationStats prec = new PercolationStats(n, trials);
+	   StdOut.printf("%-25s= %.7f\n", "mean", prec.mean());
+		StdOut.printf("%-25s= %.17f\n", "stddev", prec.stddev());
+		StdOut.printf("%-25s= [%.15f, %.15f]\n", "%95 confidence interval", prec.confidenceLo(), prec.confidenceHi());
    }
 }
