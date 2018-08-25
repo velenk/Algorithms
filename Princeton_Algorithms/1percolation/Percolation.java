@@ -2,6 +2,7 @@ import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 public class Percolation {
    private WeightedQuickUnionUF uf;
@@ -68,7 +69,7 @@ public class Percolation {
 		 col = StdIn.readIn();
 		 perc.open(row, col);
 	 }
-	 System.out.printIn(perc.percolates());
-	 System.out.printIn(perc.numberOfOpenSites());
+	 System.out.println(perc.percolates());
+	 System.out.println(perc.numberOfOpenSites());
    }
 }
