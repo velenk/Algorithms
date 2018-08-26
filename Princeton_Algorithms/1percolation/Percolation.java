@@ -34,28 +34,30 @@ public class Percolation {
 	 if (site[pos]) {
 		 return;
 	 }
-	 site[pos] = true;
 	 number_open++;
+		 site[pos] = true;
+	 int row_pre = pos - N, row_next = pos + N,
+				col_pre = pos - 1, col_next = pos + 1;
 	 if (row == 1){
 			union(0, pos, uf);
 			union(0, pos, uf_top);
-		} else if (isOpen(pos-N)){
-			union(pos-N, pos, uf);
-			union(pos-N, pos, uf_top);
+		} else if (isOpen(row_pre)){
+			union(row_pre, pos, uf);
+			union(row_pre, pos, uf_top);
 	}
 	 if(row == N){
 			union(N * N + 1, pos, uf);
-		}else if(isOpen(pos+N)){
-			union(pos+N, pos, uf);
-			union(pos+N, pos, uf_top);
+		}else if(isOpen(row_next)){
+			union(row_next, pos, uf);
+			union(row_next, pos, uf_top);
 	}
-	 if (col != 1 && site[pos-1]) {
-		 union(pos, pos-1, uf);
-		 union(pos, pos-1, uf_top);
+	 if (col != 1 && site[col_pre]) {
+		 union(pos, col_pre, uf);
+		 union(pos, col_pre, uf_top);
 	 }
-	 if (col != N && site[pos+1]) {
-		 union(pos, pos+1, uf);
-		 union(pos, pos+1, uf_top);
+	 if (col != N && site[col_next]) {
+		 union(pos, col_next, uf);
+		 union(pos, col_next, uf_top);
 	 }
    }
    public boolean isOpen(int row, int col) {

@@ -26,7 +26,7 @@ public class PercolationStats {
 			 while (!check_prec.percolates()) {
 				 int row = StdRandom.uniform(n) + 1;
 				 int col =  StdRandom.uniform(n) + 1;
-				 if (check_prec.isOpen(row, col)) {
+				 if (!check_prec.isOpen(row, col)) {
 					 check_prec.open(row, col);
 					 count++;
 				 }
