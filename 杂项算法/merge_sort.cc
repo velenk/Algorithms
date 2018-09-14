@@ -10,18 +10,22 @@ void MemeryArray(int a[], int first, int mid, int last, int temp[]) {
     if (a[i] < a[j]) {
       temp[k] = a[i];
       ++k;
+      ++i;
     } else {
       temp[k] = a[j];
       ++k;
+      ++j;
     }
   }
   while (i <= n) {
     temp[k] = a[i];
     ++k;
+    ++i;
   }
   while (j <= m) {
     temp[k] = a[j];
     ++k;
+    ++j;
   }
   for (i = 0; i < k; ++i) {
     a[first + i] = temp[i];
@@ -38,7 +42,7 @@ void MergeSort(int a[], int first, int last, int temp[]) {
 }
 
 int main() {
-  int p[9];
+  int p[9] = { };
   MergeSort(a, 0, 8, p);
   int i;
   for (i = 0; i < 9; ++i) {
